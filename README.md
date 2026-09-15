@@ -105,18 +105,20 @@ graph TD
 ---
 
 ### Phase 4: Deep Learning & CNN Mechanics (Exercises 26 – 33)
-*Focus: PyTorch tensor mechanics, parameter geometries, dimensionality equations, and hierarchical forward passes.*
+*Focus: PyTorch tensor mechanics, visual feature maps on MNIST handwritten digits, parameter geometries, dimensionality equations, and hierarchical forward passes.*
 
-- **Exercise 26: Parameterized Convolutional Layer** — Weight geometry analysis ($C_{out} \times C_{in} \times K_h \times K_w = [8, 3, 3, 3]$).
-- **Exercise 27: Spatial Forward Pass** — Convolution transformation without padding yielding dimensionality reduction:
-  $$O = \left\lfloor \frac{W - K + 2P}{S} \right\rfloor + 1 \implies \left\lfloor \frac{32 - 3 + 0}{1} \right\rfloor + 1 = 30$$
-- **Exercise 28: Zero-Padding** — Border preservation ($P=1 \implies 32 \times 32$) across deep stacks.
-- **Exercise 29: Strided Convolutions** — Spatial subsampling ($S=2, P=1 \implies 16 \times 16$) providing computational efficiency.
-- **Exercise 30: Rectified Linear Activation (ReLU)** — Element-wise non-linearity $f(x) = \max(0, x)$ solving gradient vanishing.
-- **Exercise 31: Max Pooling** — Translation-invariant local maximum extraction ($4\times4 \rightarrow 2\times2$).
+- **Exercise 26: Parameterized Convolutional Layer & Filter Visualization** — Weight geometry analysis ($C_{out} \times C_{in} \times K_h \times K_w = [8, 1, 3, 3]$) and heatmap rendering of initialized learnable spatial kernels.
+- **Exercise 27: Spatial Forward Pass with Real MNIST Data** — Convolution transformation without padding yielding dimensionality reduction:
+  $$O = \left\lfloor \frac{W - K + 2P}{S} \right\rfloor + 1 \implies \left\lfloor \frac{28 - 3 + 0}{1} \right\rfloor + 1 = 26$$
+  Visualizing the raw input digit ($28\times 28$) alongside all 8 output activation feature maps ($26\times 26$).
+- **Exercise 28: Zero-Padding** — Border preservation ($P=1 \implies 28 \times 28$) across deep stacks with side-by-side feature map inspection.
+- **Exercise 29: Strided Convolutions** — Spatial subsampling ($S=2, P=1 \implies 14 \times 14$) providing computational efficiency and spatial dimension reduction.
+- **Exercise 30: Rectified Linear Activation (ReLU)** — Element-wise non-linearity $f(x) = \max(0, x)$ clamping negative responses to 0, producing sparse feature representations.
+- **Exercise 31: Max Pooling** — Translation-invariant local maximum extraction and spatial downsampling ($28\times28 \rightarrow 14\times14$).
 - **Exercise 32: Multi-Layer Tiny CNN Architecture** — Hierarchical feature extractor stack:
-  $$\text{Input}(3\times32\times32) \xrightarrow{\text{Conv+ReLU}} 16\times32\times32 \xrightarrow{\text{MaxPool}} 16\times16\times16 \xrightarrow{\text{Conv+ReLU}} 32\times16\times16 \xrightarrow{\text{MaxPool}} 32\times8\times8 \xrightarrow{\text{Linear}} 10$$
-- **Exercise 33: Classification Logits & Softmax Probabilities** — Mapping unnormalized energy logits to categorical probability distributions.
+  $$\text{Input}(1\times28\times28) \xrightarrow{\text{Conv+ReLU}} 16\times28\times28 \xrightarrow{\text{MaxPool}} 16\times14\times14 \xrightarrow{\text{Conv+ReLU}} 32\times14\times14 \xrightarrow{\text{MaxPool}} 32\times7\times7 \xrightarrow{\text{Linear}} 10$$
+  Visualizing multi-stage layer activations from low-level edges to higher-level abstractions.
+- **Exercise 33: Classification Logits & Softmax Probabilities** — Mapping unnormalized energy logits to categorical probability distributions, visualizing predicted digit confidence against ground truth.
 
 ---
 
